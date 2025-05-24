@@ -4,10 +4,11 @@ import { supabase } from '../../../lib/supabaseClient';
 import { useRouter } from 'next/navigation';
 import { FiSearch, FiMoreVertical, FiCheck, FiPaperclip, FiPlus } from 'react-icons/fi';
 import { MdDoneAll } from 'react-icons/md';
-import { IoMdPerson } from 'react-icons/io';
-import { BsFillCameraVideoFill, BsEmojiSmile } from 'react-icons/bs';
+import { BsFillCameraVideoFill} from 'react-icons/bs';
 import { MdGroups } from 'react-icons/md';
 import { set, get } from 'idb-keyval';
+import Image from 'next/image';
+
 
 // --- Type Definitions ---
 type User = { id: string; email?: string };
@@ -221,7 +222,7 @@ export default function ChatsPage() {
       {/* Sidebar */}
       <aside className="w-[340px] bg-[#f0f2f5] h-full border-r flex flex-col">
         <header className="flex items-center gap-2 p-3 border-b bg-white">
-          <img src="/periskope-logo.png" alt="Logo" className="w-8 h-8 rounded" />
+          <Image src="/periskope-logo.png" alt="Logo" width={32} height={32} className="rounded" />
           <span className="text-xl font-bold text-gray-900 ml-1">chats</span>
         </header>
         {/* Filters */}
@@ -378,7 +379,7 @@ export default function ChatsPage() {
                       msg.attachment.endsWith('.mp4') ? (
                         <video controls className="rounded mb-2 max-h-48"><source src={msg.attachment} /></video>
                       ) : (
-                        <img src={msg.attachment} alt="attachment" className="rounded mb-2 max-h-48" />
+                        <Image src={msg.attachment} alt="attachment" width={250} height={250} className="rounded mb-2 max-h-48" />
                       )
                     )}
                     <div>{msg.content}</div>
@@ -427,3 +428,4 @@ export default function ChatsPage() {
     </section>
   );
 }
+
